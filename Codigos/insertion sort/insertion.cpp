@@ -8,14 +8,14 @@ using namespace std;
 void insertionSort(int vetor[], int tam){
 	int i, j, k , atual, aux;
 	
-	for(i=0;i<=tam-1;i++){
+	for(i=1;i<=tam-1;i++){
 
-		atual=vetor[i+1];
+		atual=vetor[i];
 
 
-		for(j=i+1;j>=0 && atual<vetor[i];j--){
+		for(j=i-1;j>=0 && atual<vetor[j];j--){
 
-				vetor[j] = vetor[j-1];
+				vetor[j+1] = vetor[j];
 
 			}
 		
