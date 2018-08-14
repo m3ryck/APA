@@ -56,12 +56,14 @@ void Quick_Sort(int *arr, int Ponta_Esq, int Ponta_Dir){
 
 int main() {
 
+/*
 int array[]={9,8,7,6,5,4,3,2,1,0};
 
 Quick_Sort(array, 0, 9);
 Printar(array, 10);
+*/
 
-/*
+
     char casodeteste[20]; 
     cout << "Digite um caso de teste: " << endl;
     cin >> casodeteste;
@@ -86,5 +88,5 @@ Printar(array, 10);
     Quick_Sort(array, 0, linhas-1);
     Printar(array, linhas);
     return 0;
-    */
+    
 }
