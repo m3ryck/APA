@@ -13,16 +13,16 @@ void Printar(int array[], int tam){
 }
 
 void Merge(int arr[], int Cabeca, int meio, int fim, int aux[]) {
-    int inf = Cabeca;
-    int sup = meio;
+    int i = Cabeca;
+    int j = meio;
     for (int i = Cabeca; i < fim; ++i) {
-        if ((inf < meio) && ((sup >= fim) || (arr[inf] < arr[sup]))) {
-            aux[i] = arr[inf];
-            ++inf;
+        if ((i < meio) && ((j >= fim) || (arr[i] < arr[j]))) {
+            aux[i] = arr[i];
+            ++i;
         }
         else {
-            aux[i] = arr[sup];
-            ++sup;
+            aux[i] = arr[j];
+            ++j;
         }
     }
     for (int i = Cabeca; i < fim; ++i) {
