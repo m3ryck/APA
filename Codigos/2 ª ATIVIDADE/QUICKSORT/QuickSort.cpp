@@ -26,10 +26,16 @@ void Quick_Sort(int *arr, int Ponta_Esq, int Ponta_Dir){
     int aux;
 
     while(Ponta_Esq<j || i<Ponta_Dir) {
-        while(arr[i]<pivo) {i++;
-        printf("\ntestando\n");}
-        while(arr[j]>pivo) {j--;
-        printf("\ntestando 2\n");}
+
+        while(arr[i]<pivo){
+        i++;
+        printf("\ntestando\n");
+        }
+
+        while(arr[j]>pivo){
+        j--;
+        printf("\ntestando 2\n");
+        }
 
         if(i<=j){
             aux = arr[i];
