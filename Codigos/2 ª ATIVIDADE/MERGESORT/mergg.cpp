@@ -3,7 +3,7 @@
 #include <stdlib.h>
 using namespace std;
 
-void Printar(int array[], int tam){
+void Printsort(int array[], int tam){
 
 	for (int i = 0; i < tam; ++i)
 	{
@@ -12,7 +12,7 @@ void Printar(int array[], int tam){
 
 }
 
-void Merge(int arr[], int inicio, int meio, int fim, int aux[]) {
+void Group(int arr[], int inicio, int meio, int fim, int aux[]) {
     int inf = inicio;
     int sup = meio;
     for (int i = inicio; i < fim; ++i) {
@@ -29,25 +29,26 @@ void Merge(int arr[], int inicio, int meio, int fim, int aux[]) {
         arr[i] = aux[i];
     }
 }
+
 void MergeSort(int arr[], int inicio, int fim, int aux[]) {
     if ((fim - inicio) < 2) return;
     
     int meio = ((inicio + fim)/2);
     MergeSort(arr, inicio, meio, aux);
     MergeSort(arr, meio, fim, aux);
-    Merge(arr, inicio, meio, fim, aux);
+    Group(arr, inicio, meio, fim, aux);
 }
+
 
 int main() {
 
-/*	
-int array[]={9,8,7,6,5,4,3,2,1,0};
+	int array[]={9,8,7,6,5,4,3,2,1,0};
 int array_2[]={};
 
 MergeSort(array, 0, 9,array_2);
-Printar(array, 10);
-*/
+Printsort(array, 10);
 
+/*
 	char casodeteste[20]; 
 	cout << "Digite um caso de teste: " << endl;
 	cin >> casodeteste;
@@ -72,6 +73,6 @@ Printar(array, 10);
 
 	int aux[linhas];
 	MergeSort(array, 0, linhas, aux);
-	Printar(array, linhas);
-	return 0;
+	Printsort(array, linhas);
+	return 0;*/
 }
