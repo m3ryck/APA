@@ -3,7 +3,7 @@
 #include <stdlib.h>
 using namespace std;
 
-void Printsort(int array[], int tam){
+void Printar(int array[], int tam){
 
 	for (int i = 0; i < tam; ++i)
 	{
@@ -12,11 +12,11 @@ void Printsort(int array[], int tam){
 
 }
 
-void Group(int arr[], int inicio, int meio, int fim, int aux[]) {
-    int inf = inicio;
+void Group(int arr[], int Cabeca, int meio, int Rabo, int aux[]) {
+    int inf = Cabeca;
     int sup = meio;
-    for (int i = inicio; i < fim; ++i) {
-        if ((inf < meio) && ((sup >= fim) || (arr[inf] < arr[sup]))) {
+    for (int i = Cabeca; i < Rabo; ++i) {
+        if ((inf < meio) && ((sup >= Rabo) || (arr[inf] < arr[sup]))) {
             aux[i] = arr[inf];
             ++inf;
         }
@@ -25,18 +25,18 @@ void Group(int arr[], int inicio, int meio, int fim, int aux[]) {
             ++sup;
         }
     }
-    for (int i = inicio; i < fim; ++i) {
+    for (int i = Cabeca; i < Rabo; ++i) {
         arr[i] = aux[i];
     }
 }
 
-void MergeSort(int arr[], int inicio, int fim, int aux[]) {
-    if ((fim - inicio) < 2) return;
+void MergeSort(int arr[], int Cabeca, int Rabo, int aux[]) {
+    if ((Rabo - Cabeca) < 2) return;
     
-    int meio = ((inicio + fim)/2);
-    MergeSort(arr, inicio, meio, aux);
-    MergeSort(arr, meio, fim, aux);
-    Group(arr, inicio, meio, fim, aux);
+    int meio = ((Cabeca + Rabo)/2);
+    MergeSort(arr, Cabeca, meio, aux);
+    MergeSort(arr, meio, Rabo, aux);
+    Group(arr, Cabeca, meio, Rabo, aux);
 }
 
 
@@ -66,6 +66,6 @@ int main() {
 
 	int aux[linhas];
 	MergeSort(array, 0, linhas, aux);
-	Printsort(array, linhas);
+	Printar(array, linhas);
 	return 0;
 }
