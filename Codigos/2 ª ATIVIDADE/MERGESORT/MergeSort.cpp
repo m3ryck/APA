@@ -12,11 +12,11 @@ void Printar(int array[], int tam){
 
 }
 
-void Group(int arr[], int Cabeca, int meio, int Rabo, int aux[]) {
+void Merge(int arr[], int Cabeca, int meio, int fim, int aux[]) {
     int inf = Cabeca;
     int sup = meio;
-    for (int i = Cabeca; i < Rabo; ++i) {
-        if ((inf < meio) && ((sup >= Rabo) || (arr[inf] < arr[sup]))) {
+    for (int i = Cabeca; i < fim; ++i) {
+        if ((inf < meio) && ((sup >= fim) || (arr[inf] < arr[sup]))) {
             aux[i] = arr[inf];
             ++inf;
         }
@@ -25,22 +25,29 @@ void Group(int arr[], int Cabeca, int meio, int Rabo, int aux[]) {
             ++sup;
         }
     }
-    for (int i = Cabeca; i < Rabo; ++i) {
+    for (int i = Cabeca; i < fim; ++i) {
         arr[i] = aux[i];
     }
 }
 
-void MergeSort(int arr[], int Cabeca, int Rabo, int aux[]) {
-    if ((Rabo - Cabeca) < 2) return;
+void MergeSort(int arr[], int Cabeca, int fim, int aux[]) {
+    if ((fim - Cabeca) < 2) return;
     
-    int meio = ((Cabeca + Rabo)/2);
+    int meio = ((Cabeca + fim)/2);
     MergeSort(arr, Cabeca, meio, aux);
-    MergeSort(arr, meio, Rabo, aux);
-    Group(arr, Cabeca, meio, Rabo, aux);
+    MergeSort(arr, meio, fim, aux);
+    Merge(arr, Cabeca, meio, fim, aux);
 }
 
 
 int main() {
+
+	/*
+int array[]={9,8,7,6,5,4,3,2,1,0};
+
+Quick_Sort(array, 0, 9);
+Printar(array, 10);
+*/
 
 	char casodeteste[20]; 
 	cout << "Digite um caso de teste: " << endl;
