@@ -3,56 +3,49 @@
 #include <stdlib.h>
 using namespace std;
 
-void Printar(int array[], int tam){
+void Printar(int vetoray[], int tam){
 
 	for (int i = 0; i < tam; ++i)
 	{
-		cout << "Order: " << i+1 << " - Number: " << array[i] << endl;
+		cout << "Order: " << i+1 << " - Number: " << vetoray[i] << endl;
 	}
 
 }
 
-void Merge(int arr[], int inicio, int meio, int fim, int aux[]) {
-    int inf = inicio;
-    int sup = meio;
+void Merge(int vetor[], int inicio, int meio, int fim, int aux[]) {
+    int indice = inicio;
+    int jj = meio;
     for (int i = inicio; i < fim; ++i) {
-        if ((inf < meio) && ((sup >= fim) || (arr[inf] < arr[sup]))) {
-            aux[i] = arr[inf];
-            ++inf;
-        }
+        if ((indice < meio) && ((jj >= fim) || (vetor[indice] < vetor[jj]))) { //se o indice for menor que o meio
+            aux[i] = vetor[indice];								//e o jj >= fim ou o conteudo do indice menor conteudo de jj
+            ++indice;											//o i atual recebe o conteudo do indice, ja que ele é menor
+        }														// incremento o i
         else {
-            aux[i] = arr[sup];
-            ++sup;
+            aux[i] = vetor[jj];									//se nao, o menor é o vetor(jj) , faz o i receber esse valor
+            ++jj;												//e incrementa.
         }
     }
-    for (int i = inicio; i < fim; ++i) {
-        arr[i] = aux[i];
+    for (int i = inicio; i < fim; ++i) {						//passando do vetor auxiliar pro vetor original
+        vetor[i] = aux[i];
     }
 }
-void MergeSort(int arr[], int inicio, int fim, int aux[]) {
+void MergeSort(int vetor[], int inicio, int fim, int aux[]) {
     if ((fim - inicio) < 2) return;
     
     int meio = ((inicio + fim)/2);
-    MergeSort(arr, inicio, meio, aux);
-    MergeSort(arr, meio, fim, aux);
-    Merge(arr, inicio, meio, fim, aux);
+    MergeSort(vetor, inicio, meio, aux);
+    MergeSort(vetor, meio, fim, aux);
+    Merge(vetor, inicio, meio, fim, aux);
 }
 
 int main() {
 
-/*	
-int array[]={9,8,7,6,5,4,3,2,1,0};
-int array_2[]={};
-
-MergeSort(array, 0, 9,array_2);
-Printar(array, 10);
-*/
 
 	char casodeteste[20]; 
 	cout << "Digite um caso de teste: " << endl;
 	cin >> casodeteste;
 
-	int array[100000]; 
+	int vetoray[100000]; 
 	int linhas = 0; 
 
 	 ifstream myReadFile;
@@ -63,7 +56,7 @@ Printar(array, 10);
 
 
 	    myReadFile >> output;
-	    array[linhas] = atoi(output);
+	    vetoray[linhas] = atoi(output);
 	   	linhas++;
 
 	 }
@@ -71,7 +64,7 @@ Printar(array, 10);
 	myReadFile.close();
 
 	int aux[linhas];
-	MergeSort(array, 0, linhas, aux);
-	Printar(array, linhas);
+	MergeSort(vetoray, 0, linhas, aux);
+	Printar(vetoray, linhas);
 	return 0;
 }
