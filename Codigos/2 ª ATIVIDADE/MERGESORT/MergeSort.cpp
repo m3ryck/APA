@@ -15,20 +15,23 @@ void Printar(int vetoray[], int tam){
 void Merge(int vetor[], int inicio, int meio, int fim, int aux[]) {
     int indice = inicio;
     int jj = meio;
+
     for (int i = inicio; i < fim; ++i) {
+
         if ((indice < meio) && ((jj >= fim) || (vetor[indice] < vetor[jj]))) { //se o indice for menor que o meio
-            aux[i] = vetor[indice];								//e o jj >= fim ou o conteudo do indice menor conteudo de jj
-            ++indice;											//o i atual recebe o conteudo do indice, ja que ele é menor
-        }														// incremento o i
+            aux[i] = vetor[indice];												//e o jj >= fim ou o conteudo do indice menor conteudo de jj
+            ++indice;															//o i atual recebe o conteudo do indice, ja que ele é menor
+        }																		// incremento o i
         else {
-            aux[i] = vetor[jj];									//se nao, o menor é o vetor(jj) , faz o i receber esse valor
-            ++jj;												//e incrementa.
+            aux[i] = vetor[jj];													//se nao, o menor é o vetor(jj) , faz o i receber esse valor
+            ++jj;																//e incrementa.
         }
     }
-    for (int i = inicio; i < fim; ++i) {						//passando do vetor auxiliar pro vetor original
+    for (int i = inicio; i < fim; ++i) {										//passando do vetor auxiliar pro vetor original=
         vetor[i] = aux[i];
     }
 }
+
 void MergeSort(int vetor[], int inicio, int fim, int aux[]) {
     if ((fim - inicio) < 2) return;
     

@@ -14,53 +14,74 @@ void Printar(int array[], int tam){
 
 }
 
-void Quick_Sort(int *arr, int Ponta_Esq, int Ponta_Dir){
+static void Quick_Sort(int tabela[], int inf, int sup)
+{
 
-    int min = ((Ponta_Esq+Ponta_Dir)/2);//meio do vetor;
+    int ii, /* Índice da esquerda */
+        jj, /* Índice da direita */
+        pivo, /* Índice do pivô */
+        aux;
+                                     /* Se a tabela está vazia ou contém apenas */
+                                    /* um elemento, ela já está ordenada */
 
-    int i = Ponta_Esq; // Atribuindo a I e a J as Extremidades do Vetor
-    int j = Ponta_Dir;
+    if (inf >= sup){
+        return; /* A tabela já está ordenada */
+    } 
+        
+    pivo = inf;/* Nesta implementação, o pivô é sempre */
+                /* o primeiro elemento da tabela */
 
-    int pivo = arr[min]; // selecionando o elemento do meio como pivo
 
-    int aux;
+    /* Início da operação de partição */
+    for (ii = inf, jj = sup; ii < jj; ) {
 
-    while(Ponta_Esq<j || i<Ponta_Dir) {
 
-        while(arr[i]<pivo){
-        i++;
-        printf("\ntestando\n");
+        /* Enquanto os elementos da primeira metade */
+        /* da tabela forem menores do que o pivô, */
+        /* incrementa-se o índice esquerdo */
+        while (tabela[ii] <= tabela[pivo] && ii < sup)
+        ++ii;
+
+
+        /* Enquanto os elementos da segunda metade */
+        /* da tabela forem maiores do que o pivô, */
+        /* decrementa-se o índice direito */
+        while (tabela[jj] > tabela[pivo])
+        --jj;
+
+
+    /* Se os elementos nos índices esq e dir estiverem */
+    /* em partições erradas, deve-se trocá-los de lugar */
+        if (ii < jj){
+            aux = tabela[ii];
+            tabela[ii] = tabela[jj];
+            tabela[jj] = aux;
         }
 
-        while(arr[j]>pivo){
-        j--;
-        printf("\ntestando 2\n");
-        }
 
-        if(i<=j){
-            aux = arr[i];
-            arr[i] = arr[j];
-            arr[j] = aux;
-            i++;
-            j--;
-        }
-        else{
-            if(Ponta_Esq<j)
-                Quick_Sort(arr, Ponta_Esq, j);
-            if(i<Ponta_Dir)
-                Quick_Sort(arr,i,Ponta_Dir);
-            return;
-        }
-    }
+    }   
+
+    aux = tabela[pivo];
+    tabela[pivo] = tabela[jj];
+    tabela[jj] = aux;
+
+    /* Ordena recursivamente a primeira metade da tabela */
+    Quick_Sort(tabela, inf, jj - 1);
+    /* Ordena recursivamente a segunda metade da tabela */
+    Quick_Sort(tabela, jj + 1, sup);
 }
 
 int main() {
 
 /*
-int array[]={9,8,7,6,5,4,3,2,1,0};
+int array[]={4,1,6,10,0};
 
-Quick_Sort(array, 0, 9);
-Printar(array, 10);
+Quick_Sort(array, 0, 4);
+
+//Quick_Sort(array, 0, 4);
+//Printar(array, 5);
+
+
 */
 
 
@@ -88,5 +109,5 @@ Printar(array, 10);
     Quick_Sort(array, 0, linhas-1);
     Printar(array, linhas);
     return 0;
-    
+
 }
