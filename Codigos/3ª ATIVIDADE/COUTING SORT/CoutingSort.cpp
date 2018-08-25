@@ -1,8 +1,11 @@
 #include <iostream> 
 #include <fstream>
 #include <stdlib.h>
-
+#include <vector>
+#include <string>
+#define MAX 100000
 using namespace std;
+
 
 void Printar(int array[], int tam){
 
@@ -14,22 +17,38 @@ void Printar(int array[], int tam){
 
 }
 
+void CoutingSort(int vetor[],int tam){
+    int aux[MAX];
 
+    int v_final[tam];
+
+    for(int i=0;i<=MAX;i++){
+        aux[i]=0;
+    }
+
+   for(int j=0; j <tam; j++){
+        aux[vetor[j]]=aux[vetor[j]]+1;
+        //{0,2,2,1,1,1,0}
+   }
+
+   for(int k=1;k<MAX;k++){
+        aux[k]=aux[k]+aux[k-1];
+        //{0,2,4,5,6,7,7}
+   }
+
+   for(int l=0;l<tam;l++){
+      v_final[aux[vetor[l]]]=vetor[l];
+        aux[vetor[l]]=aux[vetor[l]]-1;
+
+   }
+
+
+   Printar(v_final, tam);
+ 
+}
 
 
 int main() {
-
-/*
-int array[]={4,1,6,10,0};
-
-Quick_Sort(array, 0, 4);
-
-//Quick_Sort(array, 0, 4);
-//Printar(array, 5);
-
-
-*/
-
 
     char casodeteste[20]; 
     cout << "Digite um caso de teste: " << endl;
@@ -52,8 +71,12 @@ Quick_Sort(array, 0, 4);
     }
     myReadFile.close();
 
-    Quick_Sort(array, 0, linhas-1);
-    Printar(array, linhas);
+    CoutingSort(array,linhas-1);
+
+    
     return 0;
+    
+
+
 
 }
