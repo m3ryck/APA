@@ -1,4 +1,4 @@
-#include <iostream> 
+    #include <iostream> 
 #include <fstream>
 #include <stdlib.h>
 #include <vector>
@@ -16,8 +16,8 @@ void Printar(int array[], int tam){
     }
 
 }
-
-void CoutingSort(int vetor[],int tam){
+/*
+void CountingSort(int vetor[],int tam){
     int aux[MAX];
 
     int v_final[tam];
@@ -46,6 +46,40 @@ void CoutingSort(int vetor[],int tam){
    Printar(v_final, tam);
  
 }
+*/
+void CountingSort(int vetor[], int n, int e)
+{
+    int output[n];
+    int i, count[10] = {0};
+ 
+    for (i = 0; i < n; i++)
+        count[(vetor[i]/e)%10]++;
+ 
+
+    for (i = 1; i < 10; i++)
+        count[i] += count[i - 1];
+ 
+    for (i = n - 1; i >= 0; i--)
+    {
+        output[count[ (vetor[i]/e)%10 ] - 1] = vetor[i];
+        count[ (vetor[i]/e)%10 ]--;
+    }
+ 
+    for (i = 0; i < n; i++)
+        vetor[i] = output[i];
+}
+
+void radixsort(int vetor[], int n)
+{
+     int max = vetor[0];
+    for (int i = 1; i < n; i++)
+        if (vetor[i] > max)
+            max = vetor[i];
+ 
+    for (int e = 1; max/e > 0; e =e*10)
+        CountingSort(vetor, n, e);
+}
+
 
 
 int main() {
@@ -71,9 +105,10 @@ int main() {
     }
     myReadFile.close();
 
-    CoutingSort(array,linhas-1);
+    radixsort(array,linhas-1);
 
     
+    Printar(array,linhas-1);
     return 0;
     
 

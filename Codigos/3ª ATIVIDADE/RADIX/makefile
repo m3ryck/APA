@@ -1,3 +1,3 @@
 
-make: CoutingSort.cpp
-	g++ CoutingSort.cpp -o coutingsort
+make: RadixSort.cpp
+	g++ RadixSort.cpp -o radix

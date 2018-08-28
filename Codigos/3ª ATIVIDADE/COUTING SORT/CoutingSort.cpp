@@ -47,7 +47,6 @@ void CoutingSort(int vetor[],int tam){
  
 }
 
-
 int main() {
 
     char casodeteste[20]; 
