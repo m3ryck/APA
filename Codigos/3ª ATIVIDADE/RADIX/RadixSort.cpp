@@ -109,6 +109,7 @@ int main() {
 
     
     Printar(array,linhas-1);
+    
     return 0;
     
 
